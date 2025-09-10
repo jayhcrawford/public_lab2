@@ -22,32 +22,22 @@ int *intRand1DArray_dynamic(int size)
   return result;
 }
 
-// function 1 generate an array of random numbers given size as it's length
-int *intRandom1DArray(int size)
+// Function as defined by Professor Abdelrahim
+// return 2D array of dimension args: "row" x "col" populated with random values
+int **intRand2DArray_dynamic(int row, int col)
 {
   srand((unsigned)time(NULL));
-
-  int *result = new int[size];
-
-  std::generate_n(result, size, [&]()
-                  { return rand(); });
+  int **result = new int *[row];
+  for (int i = 0; i < row; i++)
+  {
+    result[i] = new int[col];
+    for (int j = 0; j < col; j++)
+    {
+      result[i][j] = rand() % 51;
+    }
+  }
 
   return result;
-}
-// Function 2 generates vector of vectors that is equivalent to a 2D array of random numbers
-std::vector<std::vector<int>> intRand2DArray(int rows, int cols)
-{
-  auto createRow = [cols]()
-  {
-    std::vector<int> row(cols);
-    std::generate(row.begin(), row.end(), []()
-                  { return rand(); });
-    return row;
-  };
-
-  std::vector<std::vector<int>> matrix(rows);
-  std::generate(matrix.begin(), matrix.end(), createRow);
-  return matrix;
 }
 
 // Function 3 Convert an 2D array to a string
@@ -82,11 +72,27 @@ double calculateAverage(int **array, int rows, int cols)
 
 int main()
 {
-  int *test1D = intRand1DArray_dynamic(10);
-
-  for (int i = 0; i < 10; i++)
+  std::cout << "Testing 1D Array generation: " << '\n';
+  int length_1D = 10;
+  int *test1D = intRand1DArray_dynamic(length_1D);
+  for (int i = 0; i < length_1D; i++)
   {
-    std::cout << test1D[i] << '\n';
+    std::cout << test1D[i] << " ";
+  }
+  std::cout << '\n'
+            << '\n';
+
+  std::cout << "Testing 2D Array generation: " << '\n';
+  int length_2D = 10;
+  int height_2D = 10;
+  int **test2D = intRand2DArray_dynamic(length_2D, height_2D);
+  for (int i = 0; i < length_2D; i++)
+  {
+    for (int k = 0; k < height_2D; k++)
+    {
+      std::cout << test2D[i][k] << " ";
+    }
+    std::cout << '\n';
   }
 
   return 0;
