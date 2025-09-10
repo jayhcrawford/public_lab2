@@ -6,6 +6,22 @@
 #include <iterator>
 #include <ctime>
 
+// Function as defined by Professor Abdelrahim
+// return 1D array of arg "size" populated with random values
+int *intRand1DArray_dynamic(int size)
+{
+  srand((unsigned)time(NULL));
+
+  int *result = new int[size];
+
+  for (int i = 0; i < size; i++)
+  {
+    result[i] = rand() % 51;
+  }
+
+  return result;
+}
+
 // function 1 generate an array of random numbers given size as it's length
 int *intRandom1DArray(int size)
 {
@@ -66,5 +82,12 @@ double calculateAverage(int **array, int rows, int cols)
 
 int main()
 {
-  std::cout << "Hello World!\n";
+  int *test1D = intRand1DArray_dynamic(10);
+
+  for (int i = 0; i < 10; i++)
+  {
+    std::cout << test1D[i] << '\n';
+  }
+
+  return 0;
 }
