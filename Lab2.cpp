@@ -5,6 +5,13 @@
 #include <algorithm>
 #include <iterator>
 #include <ctime>
+//Billy's input - Had to include the <numeric> library to be able get the iota() and numeric() to test and compile what we got so far.
+#include <numeric> 
+
+// Billy's input - Function to free memory for 1D dynamic array
+void deleteIntRand1DArray_dynamic(int* dynamic1Darray) {
+    delete[] dynamic1Darray;
+}
 
 // Function as defined by Professor Abdelrahim
 // return 1D array of arg "size" populated with random values
@@ -20,6 +27,14 @@ int *intRand1DArray_dynamic(int size)
   }
 
   return result;
+}
+
+// Billy's input - Function to free memory for 2D dynamic array
+void deleteIntRand2DArray_dynamic(int** dynamic2Darray, int row) {
+    for (int i = 0; i < row; i++) {
+        delete[] dynamic2Darray[i];
+    }
+    delete[] dynamic2Darray;
 }
 
 // Function as defined by Professor Abdelrahim
@@ -82,6 +97,9 @@ int main()
   std::cout << '\n'
             << '\n';
 
+  //Billy's input - call deleteIntRand1DArray_dynamic function to free up memory used by test1D          
+  deleteIntRand1DArray_dynamic(test1D);
+
   std::cout << "Testing 2D Array generation: " << '\n';
   int length_2D = 10;
   int height_2D = 10;
@@ -95,5 +113,8 @@ int main()
     std::cout << '\n';
   }
 
+  //Billy's input - call deleteIntRand2DArray_dynamic function to free up memory used by test2D          
+  deleteIntRand2DArray_dynamic(test2D, length_2D);
+  
   return 0;
 }
