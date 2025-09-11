@@ -5,12 +5,13 @@
 #include <algorithm>
 #include <iterator>
 #include <ctime>
-//Billy's input - Had to include the <numeric> library to be able get the iota() and numeric() to test and compile what we got so far.
-#include <numeric> 
+// Billy's input - Had to include the <numeric> library to be able get the iota() and numeric() to test and compile what we got so far.
+#include <numeric>
 
 // Billy's input - Function to free memory for 1D dynamic array
-void deleteIntRand1DArray_dynamic(int* dynamic1Darray) {
-    delete[] dynamic1Darray;
+void deleteIntRand1DArray_dynamic(int *dynamic1Darray)
+{
+  delete[] dynamic1Darray;
 }
 
 // Function as defined by Professor Abdelrahim
@@ -30,11 +31,13 @@ int *intRand1DArray_dynamic(int size)
 }
 
 // Billy's input - Function to free memory for 2D dynamic array
-void deleteIntRand2DArray_dynamic(int** dynamic2Darray, int row) {
-    for (int i = 0; i < row; i++) {
-        delete[] dynamic2Darray[i];
-    }
-    delete[] dynamic2Darray;
+void deleteIntRand2DArray_dynamic(int **dynamic2Darray, int row)
+{
+  for (int i = 0; i < row; i++)
+  {
+    delete[] dynamic2Darray[i];
+  }
+  delete[] dynamic2Darray;
 }
 
 // Function as defined by Professor Abdelrahim
@@ -79,8 +82,17 @@ int *generateOrderedArray(int n)
 // function 5  calculates the average of a 2d int array
 double calculateAverage(int **array, int rows, int cols)
 {
-  int totalSum = std::accumulate(array[0], array[0] + rows * cols, 0);
+  // sum the items in variable array
+  int totalSum;
+  for (int i = 0; i < rows; i++)
+  {
+    for (int k = 0; k < cols; k++)
+    {
+      totalSum += array[i][k];
+    }
+  }
 
+  // caculate and return average
   double average = static_cast<double>(totalSum) / (rows * cols);
   return average;
 }
@@ -97,7 +109,7 @@ int main()
   std::cout << '\n'
             << '\n';
 
-  //Billy's input - call deleteIntRand1DArray_dynamic function to free up memory used by test1D          
+  // Billy's input - call deleteIntRand1DArray_dynamic function to free up memory used by test1D
   deleteIntRand1DArray_dynamic(test1D);
 
   std::cout << "Testing 2D Array generation: " << '\n';
@@ -113,8 +125,13 @@ int main()
     std::cout << '\n';
   }
 
-  //Billy's input - call deleteIntRand2DArray_dynamic function to free up memory used by test2D          
+  // test calculateAverage for 2D Array
+  double test_averageOf_2DArray = calculateAverage(test2D, length_2D, height_2D);
+  std::cout << "the average of the 2D array is: " << test_averageOf_2DArray << '\n'
+            << '\n';
+
+  // Billy's input - call deleteIntRand2DArray_dynamic function to free up memory used by test2D
   deleteIntRand2DArray_dynamic(test2D, length_2D);
-  
+
   return 0;
 }
