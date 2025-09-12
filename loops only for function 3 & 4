@@ -62,21 +62,27 @@ int **intRand2DArray_dynamic(int row, int col)
 std::string arrayToString(int **input, int rows, int cols)
 {
   std::string result;
-  std::for_each(input, input + rows, [&](int *row)
-                {
-        std::for_each(row, row + cols, [&](int num) {
-            result += std::to_string(num) + " ";
-        });
-        result += '\n'; });
-  return result;
+  if (input == nullptr || rows <= 0 || cols <= 0) return result;
+  for (int r = 0; r < rows; r++)
+    { 
+      for (int c = 0; c < cols; c++)
+        { 
+          result += std::to_string(input[r][c]); 
+          result += " ";
+        }
+      result += '\n';
+    }
+  return result; 
 }
 // function 4 generates an ordered array of int
 int *generateOrderedArray(int n)
 {
-  int *result = new int[n];
-
-  std::iota(result, result + n, 0);
-
+  if (n <= 0) return nullptr;
+  int *result = new int [n];
+  for (int i = 0; i < n; i++)
+  { 
+    result[i] = i;
+  }
   return result;
 }
 // function 5  calculates the average of a 2d int array
