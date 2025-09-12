@@ -62,25 +62,28 @@ int **intRand2DArray_dynamic(int row, int col)
 std::string arrayToString(int **input, int rows, int cols)
 {
   std::string result;
-  if (input == nullptr || rows <= 0 || cols <= 0) return result;
+  if (input == nullptr || rows <= 0 || cols <= 0)
+    return result;
   for (int r = 0; r < rows; r++)
-    { 
-      for (int c = 0; c < cols; c++)
-        { 
-          result += std::to_string(input[r][c]); 
-          result += " ";
-        }
-      result += '\n';
+  {
+    for (int c = 0; c < cols; c++)
+    {
+      result += std::to_string(input[r][c]);
+      result += " ";
     }
-  return result; 
+    result += '\n';
+  }
+  return result;
 }
+
 // function 4 generates an ordered array of int
 int *generateOrderedArray(int n)
 {
-  if (n <= 0) return nullptr;
-  int *result = new int [n];
+  if (n <= 0)
+    return nullptr;
+  int *result = new int[n];
   for (int i = 0; i < n; i++)
-  { 
+  {
     result[i] = i;
   }
   return result;
@@ -136,8 +139,24 @@ int main()
   std::cout << "the average of the 2D array is: " << test_averageOf_2DArray << '\n'
             << '\n';
 
+  std::string test_arrayToString = arrayToString(test2D, length_2D, height_2D);
+
+  std::cout << "converting the 2D array resulted in this string value: " << '\n';
+  std::cout << test_arrayToString << '\n'
+            << '\n';
+
   // Billy's input - call deleteIntRand2DArray_dynamic function to free up memory used by test2D
   deleteIntRand2DArray_dynamic(test2D, length_2D);
+
+  // Test Vincent's ordered array fn
+  int orderedArrayLength = 10;
+  int *test_orderedArrayGenerator = generateOrderedArray(orderedArrayLength);
+  for (int i = 0; i < orderedArrayLength; i++)
+  {
+    std::cout << test_orderedArrayGenerator[i] << " ";
+  }
+  std::cout << '\n'
+            << '\n';
 
   return 0;
 }
