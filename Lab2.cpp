@@ -80,7 +80,7 @@ std::string arrayToString(int **input, int rows, int cols)
 int *generateOrderedArray(int n)
 {
   if (n <= 0)
-    return 0;
+    return nullptr;
   int *result = new int[n];
   for (int i = 0; i < n; i++)
   {
