@@ -1,15 +1,12 @@
 #include <iostream>
 #include <random>
 #include <string>
-#include <vector>
-#include <algorithm>
-#include <iterator>
 #include <ctime>
 
-// Billy's input - Function to free memory for 1D dynamic array
-void deleteIntRand1DArray_dynamic(int *dynamic1Darray)
+// Function to free memory for an ordered 1D array
+void delete1DArray(int *orderedArray)
 {
-  delete[] dynamic1Darray;
+  delete[] orderedArray;
 }
 
 // Function as defined by Professor Abdelrahim
@@ -74,11 +71,6 @@ std::string arrayToString(int **input, int rows, int cols)
   return result;
 }
 
-// Function to free memory for an ordered 1D array
-void deleteOrderedArray(int* orderedArray) {
-    delete[] orderedArray;
-}
-
 // function 4 generates an ordered array of int
 int *generateOrderedArray(int n)
 {
@@ -122,7 +114,7 @@ int main()
   std::cout << '\n'
             << '\n';
 
-  deleteIntRand1DArray_dynamic(test1D);
+  delete1DArray(test1D);
 
   std::cout << "Testing 2D Array generation: " << '\n';
   int length_2D = 10;
@@ -155,7 +147,7 @@ int main()
   }
   std::cout << '\n';
 
-  deleteOrderedArray(ordered);
+  delete1DArray(ordered);
 
   return 0;
 }
