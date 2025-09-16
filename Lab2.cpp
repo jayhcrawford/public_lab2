@@ -1,12 +1,9 @@
 #include <iostream>
 #include <random>
 #include <string>
-#include <vector>
-#include <algorithm>
-#include <iterator>
-#include <ctime>
 
-// Billy's input - Function to free memory for 1D dynamic array
+
+// Function to free memory for unordered and ordered 1D dynamic arrays
 void deleteIntRand1DArray_dynamic(int *dynamic1Darray)
 {
   delete[] dynamic1Darray;
@@ -28,7 +25,7 @@ int *intRand1DArray_dynamic(int size)
   return result;
 }
 
-// Billy's input - Function to free memory for 2D dynamic array
+// Function to free memory for 2D dynamic array
 void deleteIntRand2DArray_dynamic(int **dynamic2Darray, int row)
 {
   for (int i = 0; i < row; i++)
@@ -72,11 +69,6 @@ std::string arrayToString(int **input, int rows, int cols)
     result += '\n';
   }
   return result;
-}
-
-// Function to free memory for an ordered 1D array
-void deleteOrderedArray(int* orderedArray) {
-    delete[] orderedArray;
 }
 
 // function 4 generates an ordered array of int
@@ -155,7 +147,7 @@ int main()
   }
   std::cout << '\n';
 
-  deleteOrderedArray(ordered);
+  deleteIntRand1DArray_dynamic(ordered);
 
   return 0;
 }
