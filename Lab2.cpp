@@ -5,8 +5,6 @@
 #include <algorithm>
 #include <iterator>
 #include <ctime>
-// Billy's input - Had to include the <numeric> library to be able get the iota() and numeric() to test and compile what we got so far.
-#include <numeric>
 
 // Billy's input - Function to free memory for 1D dynamic array
 void deleteIntRand1DArray_dynamic(int *dynamic1Darray)
@@ -74,6 +72,11 @@ std::string arrayToString(int **input, int rows, int cols)
     result += '\n';
   }
   return result;
+}
+
+// Function to free memory for an ordered 1D array
+void deleteOrderedArray(int* orderedArray) {
+    delete[] orderedArray;
 }
 
 // function 4 generates an ordered array of int
@@ -152,7 +155,7 @@ int main()
   }
   std::cout << '\n';
 
-  deleteIntRand1DArray_dynamic(ordered);
+  deleteOrderedArray(ordered);
 
   return 0;
 }
