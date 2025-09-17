@@ -3,13 +3,12 @@
 #include <string>
 #include <ctime>
 
-// Function to free memory for an ordered 1D array
-void delete1DArray(int *orderedArray)
+// Function to free memory for a 1D array
+void delete1DArray(int *array)
 {
-  delete[] orderedArray;
+  delete[] array;
 }
 
-// Function as defined by Professor Abdelrahim
 // return 1D array of arg "size" populated with random values
 int *intRand1DArray_dynamic(int size)
 {
